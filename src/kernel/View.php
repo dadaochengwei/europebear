@@ -25,10 +25,10 @@ class View
         $this->variables[$name] = $value;
     }
 
-    public function view($fileName)
+    public function view($templatPathFileName)
     {
         \extract($this->variables);
-        echo $templatFile = APP_PATH . $fileName . '.php';
+        $templatFile = APP_PATH . $templatPathFileName . '.php';
         // 判断视图文件是否存在
         if (\is_file($templatFile)) {
             include($templatFile);
