@@ -33,7 +33,7 @@ class Controller
         if ($this->view == null) {
             $this->view = new View($this->uri);
         }
-        $this->view->view($fileName);
+        $this->view->view($this->templatPath . $fileName);
     }
 
 }

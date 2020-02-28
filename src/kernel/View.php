@@ -28,7 +28,7 @@ class View
     public function view($fileName)
     {
         \extract($this->variables);
-        $templatFile = APP_PATH . $fileName . '.php';
+        echo $templatFile = APP_PATH . $fileName . '.php';
         // 判断视图文件是否存在
         if (\is_file($templatFile)) {
             include($templatFile);
