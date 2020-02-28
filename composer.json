@@ -1,0 +1,19 @@
+{
+    "name": "dadaochengwei/europebear",
+    "description": "a php framework for self",
+    "authors": [
+        {
+            "name": "Tianjun",
+            "email": "602033365@qq.com"
+        }
+    ],
+	"license": "MIT",
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "dadaochengwei\\europebear\\": "src/kernel"
+        }
+    }
+}
