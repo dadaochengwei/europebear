@@ -11,6 +11,7 @@ namespace dadaochengwei\europebear\kernel;
 
 class Controller
 {
+    public $templatPath;
     private $view = null;
     public $uri;
 
@@ -22,17 +23,17 @@ class Controller
     public function assign($name, $value)
     {
         if ($this->view == null) {
-            $this->view = new View();
+            $this->view = new View($this->uri);
         }
         $this->view->assign($name, $value);
     }
 
-    public function view()
+    public function view($fileName)
     {
         if ($this->view == null) {
             $this->view = new View($this->uri);
         }
-        $this->view->view();
+        $this->view->view($fileName);
     }
 
 }

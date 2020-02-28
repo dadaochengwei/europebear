@@ -13,11 +13,11 @@ namespace dadaochengwei\europebear\kernel;
 class View
 {
     protected $variables = [];
-    protected $templetUrl;
+    protected $templatUrl;
 
-    public function __construct($templetUrl)
+    public function __construct($templatUrl = '')
     {
-        $this->templetUrl = $templetUrl;
+        $this->templatUrl = $templatUrl;
     }
 
     public function assign($name, $value)
@@ -25,13 +25,13 @@ class View
         $this->variables[$name] = $value;
     }
 
-    public function view()
+    public function view($fileName)
     {
         \extract($this->variables);
-        $templetFile = APP_PATH . $this->templetUrl . '.php';
+        $templatFile = APP_PATH . $fileName . '.php';
         // 判断视图文件是否存在
-        if (\is_file($templetFile)) {
-            include($templetFile);
+        if (\is_file($templatFile)) {
+            include($templatFile);
         } else {
             echo "<p><strong>视图文件不存在！</strong></p>";
         }
