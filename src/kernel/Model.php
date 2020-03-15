@@ -9,6 +9,7 @@
 
 namespace dadaochengwei\europebear\kernel;
 
+use dadaochengwei\europebear\classes\db\DbPdo;
 use dadaochengwei\europebear\Container;
 
 class Model
