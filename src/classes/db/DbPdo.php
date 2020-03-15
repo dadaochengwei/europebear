@@ -6,7 +6,7 @@
  * Time: 14:27
  */
 
-namespace dadaochengwei\europebear\classes;
+namespace dadaochengwei\europebear\classes\db;
 
 use dadaochengwei\europebear\Core;
 use PDO;

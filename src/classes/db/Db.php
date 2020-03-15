@@ -6,7 +6,7 @@
  * Time: 14:22
  */
 
-namespace dadaochengwei\europebear\classes;
+namespace dadaochengwei\europebear\classes\db;
 
 
 abstract class Db
