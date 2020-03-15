@@ -57,7 +57,7 @@ class Model
     /**
      * 通过查找多条数据
      */
-    public function findAll($where)
+    public function findAll($where = [])
     {
         $data = $this->db->where($where)->select();
         return $data;
@@ -66,7 +66,7 @@ class Model
     /**
      * 插入新记录
      */
-    public function insert($data = []){
+    public function insert($data){
         if($data) {
             $ret = $this->db->insert($data);
         }else{
@@ -78,7 +78,7 @@ class Model
     /**
      * 更新数据
      */
-    public function update($data = [], $where){
+    public function update($data, $where){
         if($data && $where) {
             $ret = $this->db->where($where)->update($data);
         }else{
