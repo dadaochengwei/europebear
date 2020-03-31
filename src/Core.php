@@ -99,6 +99,63 @@ class Core
     }
 
     /**
+     * POST接值处理
+     */
+    public static function post($key, $default = '', $type = '')
+    {
+        $raw = self::rawJson();
+        if (empty($raw)) {
+            if ($type == 'int') {
+                return isset($_POST[$key]) ? \intval($_POST[$key]) : $default;
+            } elseif ($type == 'array') {
+                if (!empty($_POST[$key])) {
+                    return \implode(',', \array_filter($_POST[$key]));
+                } else {
+                    return null;
+                }
+            } else {
+                return isset($_POST[$key]) ? \trim($_POST[$key]) : $default;
+            }
+        } else {
+            if ($type == 'int') {
+                return isset($raw[$key]) ? \intval($raw[$key]) : $default;
+            } elseif ($type == 'array') {
+                if (!empty($raw[$key])) {
+                    return $raw[$key];
+                    //return \implode(',', \array_filter($raw[$key]));
+                } else {
+                    return null;
+                }
+            } else {
+                $postParams = isset($raw[$key]) ? \trim($raw[$key]) : $default;
+                if ($postParams) {
+                    return $postParams;
+                } else {
+                    return isset($raw[$key]) ? \trim($raw[$key]) : $default;
+                }
+            }
+        }
+    }
+
+    /**
+     * GET接值处理
+     */
+    public static function get($key, $default = '', $type = '')
+    {
+        if ($type == 'int') {
+            return isset($_GET[$key]) ? \intval($_GET[$key]) : $default;
+        } elseif ($type == 'array') {
+            if (!empty($_GET[$key])) {
+                return \implode(',', \array_filter($_GET[$key]));
+            } else {
+                return null;
+            }
+        } else {
+            return isset($_GET[$key]) ? \trim($_GET[$key]) : $default;
+        }
+    }
+
+    /**
      * raw appliction/json 接值
      * @return mixed
      */
