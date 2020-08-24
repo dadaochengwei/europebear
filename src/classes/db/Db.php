@@ -247,7 +247,7 @@ abstract class Db
             $subSql = $this->subSql();
             $sql = "SELECT {$fields} FROM {$this->tableName} {$subSql['where']}";
             $comData = [];
-            if (is_array($this->sql['where'])) {
+            if (is_array($this->sql['where'][0])) {
                 foreach ($this->sql['where'][0] as $key => $value) {
                     $val = is_array($value) ? $value[0] : $value;
                     array_push($comData, $val);
