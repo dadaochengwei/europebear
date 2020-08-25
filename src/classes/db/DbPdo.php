@@ -128,19 +128,24 @@ class DbPdo extends Db
     /**
      * 执行原生sql查询
      * @param $sql
+	 * @param $returnType 1 返回全部 2 返回一条 3 sum
      * @return array
      */
-    public function Query($sql)
+    public function Query($sql, $returnType = 1)
     {
         $beginTime = microtime(true);
         $pdo = self::connect();
         $stmt = $pdo->query($sql);
         $data = [];
-        if ($stmt->rowCount() == 1) {
-            $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        } elseif ($stmt->rowCount() > 1) {
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
+		if (returnType == 1 || returnType == 2) {
+			if ($stmt->rowCount() == 1) {
+				$data = $stmt->fetch(PDO::FETCH_ASSOC);
+			} elseif ($stmt->rowCount() > 1) {
+				$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			}
+		} elseif(returnType == 3) {
+			$data = $stmt->fetchColumn();
+		}
         $debug = $stmt->queryString;
         $endTime = microtime(true);
         $executionTime = round(($endTime - $beginTime), 4);
