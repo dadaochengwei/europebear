@@ -198,6 +198,30 @@ class Core
         $orderNo = $pre . $yCode[intval(date('Y')) - 2020] . strtoupper(dechex(date('m'))) . date('d') . substr(time(), -5) . substr(microtime(), 2, 5) . sprintf('%02d', rand(0, 99));
         return $orderNo;
     }
+	
+	/**
+     * pagination
+     * @param int $count
+	 * @param int $pageSize
+	 * @param int $page
+     * @return array
+     */
+	public static function Pagination($count = 0, $pageSize = 10, $page = 1)
+    {
+        $maxPages = ceil($count / $pageSize);
+        if ($page < 1) {
+            $page = 0;
+        }
+        if ($page > $maxPages) {
+            $page = $maxPages;
+        }
+        if ($count == 0) {
+            $page = 1;
+        }
+        $offset = ($page - 1) * $pageSize;
+        $limit = [$offset, $pageSize];
+        return ['page' => $page, 'limit' => $limit];
+    }
 
     /**
      * 转换容量
