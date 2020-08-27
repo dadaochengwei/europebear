@@ -206,7 +206,7 @@ class Core
 	 * @param int $page
      * @return array
      */
-	public static function Pagination($count = 0, $pageSize = 10, $page = 1)
+	public static function Pagination($count = 0, $page = 1, $pageSize = 10)
     {
         $maxPages = ceil($count / $pageSize);
         if ($page < 1) {
