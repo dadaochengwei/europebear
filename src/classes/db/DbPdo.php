@@ -137,13 +137,13 @@ class DbPdo extends Db
         $pdo = self::connect();
         $stmt = $pdo->query($sql);
         $data = [];
-		if (returnType == 1 || returnType == 2) {
+		if ($returnType == 1 || $returnType == 2) {
 			if ($stmt->rowCount() == 1) {
 				$data = $stmt->fetch(PDO::FETCH_ASSOC);
 			} elseif ($stmt->rowCount() > 1) {
 				$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			}
-		} elseif(returnType == 3) {
+		} elseif($returnType == 3) {
 			$data = $stmt->fetchColumn();
 		}
         $debug = $stmt->queryString;
